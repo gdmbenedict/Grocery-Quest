@@ -47,9 +47,12 @@ TagManager:
   - name: Midground
     uniqueID: 2515078687
     locked: 0
-  - name: Foreground
-    uniqueID: 2783631975
-    locked: 0
   - name: Interactables
     uniqueID: 3079783411
+    locked: 0
+  - name: Player & NPCS
+    uniqueID: 4087897961
+    locked: 0
+  - name: Foreground
+    uniqueID: 2783631975
     locked: 0
