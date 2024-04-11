@@ -1028,12 +1028,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 220373845}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -703.51624, y: -259.51663, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1911119114}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &220373849
 MonoBehaviour:
@@ -3644,6 +3644,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941589355}
   m_CullTransparentMesh: 1
+--- !u!1 &1042220209
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1042220210}
+  - component: {fileID: 1042220211}
+  m_Layer: 0
+  m_Name: InteractionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1042220210
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042220209}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1911119114}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042220211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042220209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09dea79a08739a24eb7567c5527258a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObjects: []
+  interactButton: 101
+  fadeTime: 5
+  fadeDelay: 1
+  textSize: 3
+  textColor: {r: 0, g: 0, b: 0, a: 1}
+  textAlignment: 514
+  displaySpace: []
+  dialogueText: {fileID: 0}
+  dialogueTextSize: 40
+  dialogueTextColor: {r: 0, g: 0, b: 0, a: 1}
+  dialogueTextAlignment: 257
 --- !u!1 &1111055551
 GameObject:
   m_ObjectHideFlags: 0
@@ -7586,7 +7642,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 9.822374}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 220373848}
+  - {fileID: 1042220210}
   m_Father: {fileID: 877991088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1911119115
@@ -7623,8 +7681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  movementSpeed: 0
-  animator: {fileID: 0}
+  movementSpeed: 10
+  animator: {fileID: 1911119115}
   runSpeed: 7.5
   walkSpeed: 5
   running: 0
@@ -7739,8 +7797,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -207069335
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1629458177, guid: b83042ae8f28fee4e90e397ab33d7f11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -8649,5 +8707,4 @@ CanvasRenderer:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 220373848}
   - {fileID: 877991088}
