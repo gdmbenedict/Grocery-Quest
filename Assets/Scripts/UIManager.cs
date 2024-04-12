@@ -11,9 +11,7 @@ public class UIManager : MonoBehaviour
         MainMenu,
         PauseMenu,
         GamePlayHUD,
-        GameWinScreen,
-        GameOverScreen,
-        OptionsMenu
+        GameWinScreen
     }
 
     [Header("UI Screens")]
@@ -63,14 +61,6 @@ public class UIManager : MonoBehaviour
             case ScreenState.GameWinScreen:
                 gameWinScreen.SetActive(false);
                 break;
-
-            case ScreenState.GameOverScreen:
-                gameOverScreen.SetActive(false);
-                break;
-
-            case ScreenState.OptionsMenu:
-                OptionsMenu.SetActive(false);
-                break;
         }
 
         //enables the new screen
@@ -90,14 +80,6 @@ public class UIManager : MonoBehaviour
 
             case ScreenState.GameWinScreen:
                 gameWinScreen.SetActive(true);
-                break;
-
-            case ScreenState.GameOverScreen:
-                gameOverScreen.SetActive(true);
-                break;
-
-            case ScreenState.OptionsMenu:
-                OptionsMenu.SetActive(true);
                 break;
 
         }

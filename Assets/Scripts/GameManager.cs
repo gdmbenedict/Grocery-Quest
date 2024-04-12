@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
         MainMenu,
         Gameplay,
         Paused,
-        Options,
-        GameOver,
         GameWin
     }
 
@@ -119,14 +117,6 @@ public class GameManager : MonoBehaviour
                 ExitPausedState();
                 break;
 
-            case GameState.Options:
-                ExitOptionsState();
-                break;
-
-            case GameState.GameOver:
-                ExitGameOverState();
-                break;
-
             case GameState.GameWin:
                 ExitGameWinState();
                 break;
@@ -147,14 +137,6 @@ public class GameManager : MonoBehaviour
 
             case GameState.Paused:
                 EnterPausedState();
-                break;
-
-            case GameState.Options:
-                EnterOptionsState();
-                break;
-
-            case GameState.GameOver:
-                EnterGameOverState();
                 break;
 
             case GameState.GameWin:
@@ -178,14 +160,6 @@ public class GameManager : MonoBehaviour
 
             case GameState.Paused:
                 UpdatePausedState();
-                break;
-
-            case GameState.Options:
-                UpdateOptionsState();
-                break;
-
-            case GameState.GameOver:
-                UpdateGameOverState();
                 break;
 
             case GameState.GameWin:
@@ -265,21 +239,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    private void EnterOptionsState()
-    {
-        uiManager.ChangeScreen(ScreenState.OptionsMenu);
-    }
-
-    private void UpdateOptionsState()
-    {
-
-    }
-
-    private void ExitOptionsState()
-    {
-
-    }
-
     private void EnterGameOverState()
     {
         levelManager.ChangeScene("EndScene");
@@ -316,12 +275,6 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
-    //Options Button
-    public void OptionsButton()
-    {
-        ChangeGameState(GameState.Options);
-    }
-
     //Back Button (also used for escape key functionality
     public void BackButton()
     {
@@ -346,26 +299,10 @@ public class GameManager : MonoBehaviour
                 ChangeGameState(GameState.Gameplay);
                 break;
 
-            case GameState.GameOver:
-                ChangeGameState(GameState.MainMenu);
-                break;
-
             case GameState.GameWin:
                 ChangeGameState(GameState.MainMenu);
                 break;
 
-            case GameState.Options:
-
-                if (levelManager.IsMainMenu())
-                {
-                    ChangeGameState(GameState.MainMenu);
-                }
-                else
-                {
-                    ChangeGameState(GameState.Paused);
-                }
-
-                break;
         }
     }
 
@@ -405,17 +342,10 @@ public class GameManager : MonoBehaviour
                 uiManager.ChangeScreen(ScreenState.PauseMenu);
                 break;
 
-            case GameState.GameOver:
-                uiManager.ChangeScreen(ScreenState.GameOverScreen);
-                break;
-
             case GameState.GameWin:
                 uiManager.ChangeScreen(ScreenState.GameWinScreen);
                 break;
 
-            case GameState.Options:
-                uiManager.ChangeScreen(ScreenState.OptionsMenu);
-                break;
         }
     }
 
@@ -426,14 +356,7 @@ public class GameManager : MonoBehaviour
 
     public void FinishGame(bool win)
     {
-        if (win)
-        {
             ChangeGameState(GameState.GameWin);
-        }
-        else
-        {
-            ChangeGameState(GameState.GameOver);
-        }
     }
 
     public void DisablePlayerControls()
