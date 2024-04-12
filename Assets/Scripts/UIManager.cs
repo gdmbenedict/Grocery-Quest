@@ -24,8 +24,6 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gamePlayHUD;
     public GameObject gameWinScreen;
-    public GameObject gameOverScreen;
-    public GameObject OptionsMenu;
     public GameObject DialogueUI;
 
     private void Awake()
