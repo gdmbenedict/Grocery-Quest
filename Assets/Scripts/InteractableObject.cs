@@ -35,10 +35,12 @@ public class InteractableObject : MonoBehaviour
     [Header("Quest")]
     [SerializeField] private Item.itemType questItemType;
     [SerializeField] private int questQuantity;
-    [SerializeField] private bool started;
+    [SerializeField] private bool questStarted;
     [SerializeField] private string[] startDialogue;
     [SerializeField] private string[] middleDialogue;
     [SerializeField] private string[] endDialogue;
+    [SerializeField] private List<GameObject> disableAfterQuest;
+    [SerializeField] private List<GameObject> enableAfterQuest;
 
     private void Awake()
     {
@@ -139,8 +141,58 @@ public class InteractableObject : MonoBehaviour
         return pickupQuantity;
     }
 
+    public Item.itemType GetQuestItemType()
+    {
+        return questItemType;
+    }
 
-    
+    public int GetQuestItemQuantity()
+    {
+        return questQuantity;
+    }
 
-    
+    public string[] GetQuestStartDialogue()
+    {
+        return startDialogue;
+    }
+
+    public string[] GetQuestMiddleDialogue()
+    {
+        return middleDialogue;
+    }
+
+    public string[] GetQuestEndDialogue()
+    {
+        return endDialogue;
+    }
+
+    public void StartQuest()
+    {
+        questStarted = true;
+    }
+
+    public void FinishQuest()
+    {
+        foreach (GameObject gameObject in enableAfterQuest)
+        {
+            gameObject.SetActive(true);
+        }
+
+        foreach (GameObject gameObject in disableAfterQuest)
+        {
+            gameObject.SetActive(false);
+        }
+    }
+
+    public bool GetQuestStarted()
+    {
+        return questStarted;
+    }
+
+
+
+
+
+
+
 }

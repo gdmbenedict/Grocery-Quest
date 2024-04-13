@@ -79,7 +79,20 @@ public class InteractionManager : MonoBehaviour
             //quest
             else if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.quest)
             {
-
+                if (!interactableObjects.First().GetQuestStarted())
+                {
+                    StartDialogue(interactableObjects.First().GetQuestStartDialogue(), interactableObjects.First().name);
+                    interactableObjects.First().StartQuest();
+                }
+                else if (inventory.GetItemQuantity(interactableObjects.First().GetQuestItemType()) < interactableObjects.First().GetQuestItemQuantity())
+                {
+                    StartDialogue(interactableObjects.First().GetQuestMiddleDialogue(), interactableObjects.First().name);
+                }
+                else if (inventory.GetItemQuantity(interactableObjects.First().GetQuestItemType()) >= interactableObjects.First().GetQuestItemQuantity())
+                {
+                    StartDialogue(interactableObjects.First().GetQuestEndDialogue(), interactableObjects.First().name);
+                    interactableObjects.First().FinishQuest();
+                }
             }
 
         }
