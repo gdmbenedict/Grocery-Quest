@@ -11,7 +11,8 @@ public class UIManager : MonoBehaviour
         MainMenu,
         PauseMenu,
         GamePlayHUD,
-        GameWinScreen
+        GameWinScreen,
+        CreditsScreen
     }
 
     [Header("UI Screens")]
@@ -22,7 +23,9 @@ public class UIManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gamePlayHUD;
     public GameObject gameWinScreen;
+    public GameObject creditsScreen;
     public GameObject DialogueUI;
+
 
     private void Awake()
     {
@@ -61,6 +64,10 @@ public class UIManager : MonoBehaviour
             case ScreenState.GameWinScreen:
                 gameWinScreen.SetActive(false);
                 break;
+
+            case ScreenState.CreditsScreen:
+                creditsScreen.SetActive(false);
+                break;
         }
 
         //enables the new screen
@@ -80,6 +87,10 @@ public class UIManager : MonoBehaviour
 
             case ScreenState.GameWinScreen:
                 gameWinScreen.SetActive(true);
+                break;
+
+            case ScreenState.CreditsScreen:
+                creditsScreen.SetActive(true);
                 break;
 
         }

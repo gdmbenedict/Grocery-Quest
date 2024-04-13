@@ -202,7 +202,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            levelManager.ChangeScene("Gameplay_Village1");
+            levelManager.ChangeScene("Gameplay_Town");
         }
     
         Time.timeScale = 1;
@@ -281,6 +281,13 @@ public class GameManager : MonoBehaviour
         switch (gameState)
         {
             case GameState.MainMenu:
+
+                if (uiManager.screenState == ScreenState.CreditsScreen)
+                {
+                    uiManager.ChangeScreen(ScreenState.MainMenu);
+                    break;
+                }
+
                 QuitGame();
                 break;
 
@@ -316,6 +323,12 @@ public class GameManager : MonoBehaviour
     public void MainMenuButton()
     {
         levelManager.ChangeScene("MainMenu");
+    }
+
+    //Toggles the Credits Menu
+    public void CreditsButton()
+    {
+        uiManager.ChangeScreen(ScreenState.CreditsScreen);
     }
 
     private void EscapeInput()
