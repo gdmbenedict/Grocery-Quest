@@ -9,6 +9,7 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] List<InteractableObject> interactableObjects = new List<InteractableObject>();
     private GameManager gameManager;
     private UIManager uiManager;
+    private Inventory inventory;
 
     [Header("Interaction Settings")]
     [SerializeField] private KeyCode interactButton = KeyCode.E;
@@ -39,6 +40,7 @@ public class InteractionManager : MonoBehaviour
     {
         gameManager  = FindObjectOfType<GameManager>();
         uiManager = FindObjectOfType<UIManager>();
+        inventory = FindObjectOfType<Inventory>();
 
         SetDialogueSettings();
     }
@@ -58,16 +60,28 @@ public class InteractionManager : MonoBehaviour
             //checks interaction type
             if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.pickup || interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.info)
             {
+                if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.pickup)
+                {
+                    inventory.AddItem(interactableObjects.First().GetItemType(), interactableObjects.First().GetItemQuantity());
+                }
+
                 //interacts with object, generates message and puts it in the list
                 InteractableObject interact = interactableObjects.First();
                 messages.Add(MakeMessage(interact.Interact()));
 
                 StartCoroutine(FadeMessage(messages.Last()));
             }
+            //dialogue
             else if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.dialogue)
             {
                 StartDialogue(interactableObjects.First().getDialogue(), interactableObjects.First().name);
             }
+            //quest
+            else if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.quest)
+            {
+
+            }
+
         }
 
         if (Input.GetKeyDown(interactButton) && inDialogue)

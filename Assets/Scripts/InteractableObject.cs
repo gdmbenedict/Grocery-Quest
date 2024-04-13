@@ -9,7 +9,8 @@ public class InteractableObject : MonoBehaviour
     {
         pickup,
         info,
-        dialogue
+        dialogue,
+        quest
     }
 
     [Header("Interaction Data")]
@@ -24,8 +25,20 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private Color textColor = Color.white;
     [SerializeField] private TextAlignmentOptions alignmentOptions = TextAlignmentOptions.Center;
 
+    [Header("Pickup")]
+    [SerializeField] private Item.itemType pickupItemType;
+    [SerializeField] private int pickupQuantity;
+
     [Header("Dialogue")]
     [SerializeField] private string[] dialogue;
+
+    [Header("Quest")]
+    [SerializeField] private Item.itemType questItemType;
+    [SerializeField] private int questQuantity;
+    [SerializeField] private bool started;
+    [SerializeField] private string[] startDialogue;
+    [SerializeField] private string[] middleDialogue;
+    [SerializeField] private string[] endDialogue;
 
     private void Awake()
     {
@@ -80,7 +93,7 @@ public class InteractableObject : MonoBehaviour
         {
             case InteractionType.pickup:
 
-                message = "Picked up a " + name; //ma
+                message = "Picked up" + pickupQuantity + " " + name; //ma
                 StartCoroutine(DelayedDestroy());
                 break;
 
@@ -115,7 +128,16 @@ public class InteractableObject : MonoBehaviour
     {
         return dialogue;
     }
+    
+    public Item.itemType GetItemType()
+    {
+        return pickupItemType;
+    }
 
+    public int GetItemQuantity()
+    {
+        return pickupQuantity;
+    }
 
 
     

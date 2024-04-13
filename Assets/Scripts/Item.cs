@@ -24,7 +24,7 @@ public class Item : MonoBehaviour
     }
 
     public itemType type;
-    public int quantity;
+    public int quantity =0;
 
     // Start is called before the first frame update
     void Start()
