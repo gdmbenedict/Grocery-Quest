@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class LevelTeleporter : MonoBehaviour
 {
-    [SerializeField] string sceneName = "Gameplay_Village2";
+    [SerializeField] private string sceneName;
+    [SerializeField] private string targetSpawnPoint; 
 
     private LevelManager levelManager;
 
@@ -19,6 +20,12 @@ public class LevelTeleporter : MonoBehaviour
 
         if (other.tag == "Player")
         {
+            //changes the point at which to load the player
+            if (other.GetComponent<PlayerController>().getTargetSpawnPoint() != targetSpawnPoint)
+            {
+                other.GetComponent<PlayerController>().changeTargetSpawnPoint(targetSpawnPoint);
+            }
+
             levelManager.ChangeScene(sceneName);
         }
         

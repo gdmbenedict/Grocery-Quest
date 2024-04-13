@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]  private bool running;
     [SerializeField] private bool idle;
+
+    [Header("Player Spawning")]
+    [SerializeField] private string targetSpawnPoint;
     
     // Start is called before the first frame update
     void Start()
@@ -103,5 +106,17 @@ public class PlayerController : MonoBehaviour
             running = false;
             movementSpeed = walkSpeed;
         }
+    }
+
+    //Mutator method to change player's target spawn point
+    public void changeTargetSpawnPoint(string newSpawnPoint)
+    {
+        targetSpawnPoint = newSpawnPoint;
+    }
+
+    //Mutator method to get player's target spawn point
+    public string getTargetSpawnPoint()
+    {
+        return targetSpawnPoint;
     }
 }

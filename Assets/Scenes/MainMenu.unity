@@ -9223,6 +9223,7 @@ MonoBehaviour:
   walkSpeed: 5
   running: 0
   idle: 0
+  targetSpawnPoint: PlayerHomeSpawn
 --- !u!61 &1911119117
 BoxCollider2D:
   m_ObjectHideFlags: 0

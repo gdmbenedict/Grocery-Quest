@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
             playerController.enabled = true;
             interactionManager.enabled = true;
 
-            SpawnPlayer();
+            SpawnPlayer(player.GetComponent<PlayerController>().getTargetSpawnPoint());
         }
         else
         {
@@ -362,9 +362,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SpawnPlayer()
+    private void SpawnPlayer(string targetSpawnPoint)
     {
-        player.transform.position = levelManager.GetSpawnPoint();
+        player.transform.position = levelManager.GetSpawnPoint(targetSpawnPoint);
     }
 
     public void FinishGame(bool win)
