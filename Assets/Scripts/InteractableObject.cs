@@ -66,6 +66,8 @@ public class InteractableObject : MonoBehaviour
 
         active = gameObject.activeSelf;
         originalScene = SceneManager.GetActiveScene().name;
+
+        //transform.parent = GameObject.Find("InteractablesHolder").transform;
     }
 
     // Start is called before the first frame update
@@ -80,27 +82,23 @@ public class InteractableObject : MonoBehaviour
         
     }
 
-    //event system
-    private void OnEnable()
+    public void RecordState()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable()
-    {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
-
-    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if (originalScene != SceneManager.GetActiveScene().name)
+        if (gameObject.activeSelf)
         {
-            active = gameObject.activeSelf;
-            gameObject.SetActive(false);
+            active = true;
         }
         else
         {
-            gameObject.SetActive(active);
+            active = false;
+        }
+    }
+
+    public void LoadState()
+    {
+        if (active)
+        {
+            gameObject.SetActive(true);
         }
     }
 
@@ -241,11 +239,5 @@ public class InteractableObject : MonoBehaviour
     {
         return questStarted;
     }
-
-
-
-
-
-
 
 }
