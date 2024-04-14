@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public LevelManager levelManager;
     public UIManager uiManager;
     public InteractionManager interactionManager;
+    public DialogueManager dialogueManager;
 
     [Header("Game States")]
 
@@ -40,6 +41,7 @@ public class GameManager : MonoBehaviour
         //getting managers
         levelManager = FindObjectOfType<LevelManager>();
         uiManager = FindObjectOfType<UIManager>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
 
         //grabing player details
         playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
@@ -293,9 +295,9 @@ public class GameManager : MonoBehaviour
 
             case GameState.Gameplay:
 
-                if (interactionManager.getInDialogue())
+                if (dialogueManager.GetInDialogue())
                 {
-                    interactionManager.EndDialogue();
+                    dialogueManager.EndDialogue();
                     break;
                 }
 

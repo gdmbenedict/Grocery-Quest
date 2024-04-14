@@ -10,6 +10,7 @@ public class InteractionManager : MonoBehaviour
     private GameManager gameManager;
     private UIManager uiManager;
     private Inventory inventory;
+    private DialogueManager dialogueManager;
 
     [Header("Interaction Settings")]
     [SerializeField] private KeyCode interactButton = KeyCode.E;
@@ -24,25 +25,14 @@ public class InteractionManager : MonoBehaviour
 
     List<TextMeshPro> messages = new List<TextMeshPro>();
 
-    [Header("Dialogue Settings")]
-    
-    [SerializeField] private TextMeshProUGUI dialogueText;
-    [SerializeField] private float dialogueTextSize = 40f;
-    [SerializeField] private Color dialogueTextColor = Color.black;
-    [SerializeField] private TextAlignmentOptions dialogueTextAlignment = TextAlignmentOptions.TopLeft;
-
-    private bool inDialogue;
-    private Queue<string> dialogue = new Queue<string>();
-    private string dialogueName;
-
 
     private void Awake()
     {
         gameManager  = FindObjectOfType<GameManager>();
         uiManager = FindObjectOfType<UIManager>();
         inventory = FindObjectOfType<Inventory>();
+        dialogueManager = FindObjectOfType<DialogueManager>();
 
-        SetDialogueSettings();
     }
 
     // Start is called before the first frame update
@@ -55,7 +45,7 @@ public class InteractionManager : MonoBehaviour
     void Update()
     {
         //handle button presses
-        if (Input.GetKeyDown(interactButton) && interactableObjects.Count > 0 && !inDialogue)
+        if (Input.GetKeyDown(interactButton) && interactableObjects.Count > 0 && !dialogueManager.GetInDialogue())
         {
             //checks interaction type
             if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.pickup || interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.info)
@@ -74,25 +64,25 @@ public class InteractionManager : MonoBehaviour
             //dialogue
             else if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.dialogue)
             {
-                StartDialogue(interactableObjects.First().getDialogue(), interactableObjects.First().name);
+                dialogueManager.StartDialogue(interactableObjects.First().getDialogue(), interactableObjects.First().name);
             }
             //quest
             else if (interactableObjects.First().GetInteractionType() == InteractableObject.InteractionType.quest)
             {
                 if (!interactableObjects.First().GetQuestStarted())
                 {
-                    StartDialogue(interactableObjects.First().GetQuestStartDialogue(), interactableObjects.First().name);
+                    dialogueManager.StartDialogue(interactableObjects.First().GetQuestStartDialogue(), interactableObjects.First().name);
                     interactableObjects.First().StartQuest();
                 }
                 else if (inventory.GetItemQuantity(interactableObjects.First().GetQuestItemType()) < interactableObjects.First().GetQuestItemQuantity())
                 {
-                    StartDialogue(interactableObjects.First().GetQuestMiddleDialogue(), interactableObjects.First().name);
+                    dialogueManager.StartDialogue(interactableObjects.First().GetQuestMiddleDialogue(), interactableObjects.First().name);
                 }
                 else if (inventory.GetItemQuantity(interactableObjects.First().GetQuestItemType()) >= interactableObjects.First().GetQuestItemQuantity())
                 {
                     inventory.RemoveItem(interactableObjects.First().GetQuestItemType(), interactableObjects.First().GetQuestItemQuantity());
-                    
-                    StartDialogue(interactableObjects.First().GetQuestEndDialogue(), interactableObjects.First().name);
+
+                    dialogueManager.StartDialogue(interactableObjects.First().GetQuestEndDialogue(), interactableObjects.First().name);
 
                     inventory.AddItem(interactableObjects.First().GetRewardItemType(), interactableObjects.First().GetRewardQuantity());
                     interactableObjects.First().FinishQuest();
@@ -100,10 +90,9 @@ public class InteractionManager : MonoBehaviour
             }
 
         }
-
-        if (Input.GetKeyDown(interactButton) && inDialogue)
+        else if (Input.GetKeyDown(interactButton) && dialogueManager.GetInDialogue())
         {
-            NextDialogue();
+            dialogueManager.NextDialogue();
         }
 
         DisplayMessages();
@@ -205,68 +194,7 @@ public class InteractionManager : MonoBehaviour
         messages.Remove(message);
     }
 
-    private void SetDialogueSettings()
-    {
-        dialogueText.fontSize = dialogueTextSize;
-        dialogueText.alignment = dialogueTextAlignment;
-        dialogueText.color = dialogueTextColor;
-    }
-
-    private void StartDialogue(string[] dialogue, string name)
-    {
-        if (dialogue.Length > 0)
-        {
-            //Debug.Log("dialogue called");
-
-            inDialogue = true;
-            gameManager.DisablePlayerControls();
-
-            dialogueName = name;
-
-            foreach (string s in dialogue)
-            {
-                this.dialogue.Enqueue(s);
-            }
-
-            SetDialogueText();
-            uiManager.EnableDialogueUI();
-        }        
-    }
-
-    public void EndDialogue()
-    {
-        while (dialogue.Count > 0)
-        {
-            dialogue.Dequeue();
-        }
-
-        inDialogue = false;
-        gameManager.EnablePlayerControls();
-        uiManager.DisableDialogueUI();
-    }
-
-    public void NextDialogue()
-    {
-        Debug.Log("Next Dialogue Called");
-
-        if (dialogue.Count <= 0)
-        {
-            EndDialogue();
-            return;
-        }
-
-        SetDialogueText();
-    }
-
-    private void SetDialogueText()
-    {
-        dialogueText.text = dialogueName + ": " + dialogue.Dequeue();
-    }
-
-    public bool getInDialogue()
-    {
-        return inDialogue;
-    }
+    
 
 
     
