@@ -2941,6 +2941,34 @@ MonoBehaviour:
   gameWinScreen: {fileID: 1120340650}
   creditsScreen: {fileID: 120670643}
   DialogueUI: {fileID: 834476291}
+  lowGold: {fileID: 740039104}
+  lowGoldMax: 5
+  mediumLowGold: {fileID: 1714385798}
+  mediumLowGoldMax: 15
+  mediumGold: {fileID: 1960401921}
+  mediumGoldMax: 30
+  highGold: {fileID: 1854592449}
+  goldText: {fileID: 1166143246}
+  goldTextObject: {fileID: 1166143244}
+  appleVisual: {fileID: 713530010}
+  bananasVisual: {fileID: 2075636259}
+  porkVisual: {fileID: 2118848214}
+  oliveOilVisual: {fileID: 1141300178}
+  rockSaltVisual: {fileID: 2061215495}
+  hotSauceVisual: {fileID: 1405704981}
+  healthPotVisual: {fileID: 161835786}
+  manaPotVisual: {fileID: 162142495}
+  teaVisual: {fileID: 587047781}
+  knifeVisual: {fileID: 1612890668}
+  alcoholVisual: {fileID: 1692622417}
+  bookVisual: {fileID: 1111055551}
+  candleVisual: {fileID: 941589355}
+  apples: {fileID: 665304526}
+  bananas: {fileID: 888404609}
+  pork: {fileID: 1562100344}
+  oliveOil: {fileID: 13377563}
+  rockSalt: {fileID: 28462781}
+  hotSauce: {fileID: 1184232090}
 --- !u!1 &665304524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5038,6 +5066,7 @@ MonoBehaviour:
   - {fileID: 1613066917}
   - {fileID: 871724877}
   - {fileID: 835533813}
+  uiManager: {fileID: 651235937}
 --- !u!1 &1141300178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5180,7 +5209,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4278198337
-  m_fontColor: {r: 0.25490198, g: 0.1254902, b: 0, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9311,7 +9340,7 @@ GameObject:
   - component: {fileID: 1854592452}
   - component: {fileID: 1854592451}
   m_Layer: 5
-  m_Name: MediumGold (1)
+  m_Name: HighGold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

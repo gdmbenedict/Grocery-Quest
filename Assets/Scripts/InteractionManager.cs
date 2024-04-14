@@ -90,7 +90,11 @@ public class InteractionManager : MonoBehaviour
                 }
                 else if (inventory.GetItemQuantity(interactableObjects.First().GetQuestItemType()) >= interactableObjects.First().GetQuestItemQuantity())
                 {
+                    inventory.RemoveItem(interactableObjects.First().GetQuestItemType(), interactableObjects.First().GetQuestItemQuantity());
+                    
                     StartDialogue(interactableObjects.First().GetQuestEndDialogue(), interactableObjects.First().name);
+
+                    inventory.AddItem(interactableObjects.First().GetRewardItemType(), interactableObjects.First().GetRewardQuantity());
                     interactableObjects.First().FinishQuest();
                 }
             }

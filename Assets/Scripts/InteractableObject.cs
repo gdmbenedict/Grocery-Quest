@@ -39,6 +39,8 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private string[] startDialogue;
     [SerializeField] private string[] middleDialogue;
     [SerializeField] private string[] endDialogue;
+    [SerializeField] private Item.itemType rewardItemType;
+    [SerializeField] private int rewardQuantity;
     [SerializeField] private List<GameObject> disableAfterQuest;
     [SerializeField] private List<GameObject> enableAfterQuest;
 
@@ -149,6 +151,16 @@ public class InteractableObject : MonoBehaviour
     public int GetQuestItemQuantity()
     {
         return questQuantity;
+    }
+
+    public Item.itemType GetRewardItemType()
+    {
+        return rewardItemType;
+    }
+
+    public int GetRewardQuantity()
+    {
+        return rewardQuantity;
     }
 
     public string[] GetQuestStartDialogue()

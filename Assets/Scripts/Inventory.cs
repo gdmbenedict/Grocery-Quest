@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
 
-    public List<Item> items;
+    [SerializeField] private List<Item> items;
+    [SerializeField] private UIManager uiManager;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,9 @@ public class Inventory : MonoBehaviour
             if (items[i].type == type)
             {
                 items[i].quantity += quantity;
+
+                uiManager.UpdateItemUI(items[i]);
+
                 return true;
             }
         }
@@ -59,6 +65,9 @@ public class Inventory : MonoBehaviour
                 }
 
                 items[i].quantity -= quantity;
+
+                uiManager.UpdateItemUI(items[i]);
+
                 return true;
             }
         }
@@ -78,4 +87,5 @@ public class Inventory : MonoBehaviour
 
         return 0;
     }
+
 }
