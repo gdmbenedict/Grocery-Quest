@@ -157,11 +157,13 @@ public class InteractionManager : MonoBehaviour
         target.alignment = source.alignment;
     }
 
-    //Method that that makes a TMPro object from a string and properly formats it
+    //Method that makes a TMPro object from a string and properly formats it
     private TextMeshPro MakeMessage(string text)
     {
         //make text mesh pro object
-        TextMeshPro message = new TextMeshPro();
+        GameObject messageHolder = new GameObject();
+        messageHolder.AddComponent<TextMeshPro>();
+        TextMeshPro message = messageHolder.GetComponent<TextMeshPro>();
         
         //set values
         message.text = text;

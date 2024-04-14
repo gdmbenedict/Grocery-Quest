@@ -96,7 +96,7 @@ public class InteractableObject : MonoBehaviour
         {
             case InteractionType.pickup:
 
-                message = "Picked up" + pickupQuantity + " " + name; //ma
+                message = "Picked up " + pickupQuantity + " " + name; //ma
                 StartCoroutine(DelayedDestroy());
                 break;
 
@@ -111,7 +111,7 @@ public class InteractableObject : MonoBehaviour
     IEnumerator DelayedDestroy()
     {
         bool firstTime = true;
-        Debug.Log("Desstroy reached");
+        //Debug.Log("Desstroy reached");
         if (firstTime)
         {
             firstTime = false;
