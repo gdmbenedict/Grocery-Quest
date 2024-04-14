@@ -74,13 +74,13 @@ public class InteractionManager : MonoBehaviour
                     dialogueManager.StartDialogue(interactableObjects.First().GetQuestStartDialogue(), interactableObjects.First().name);
                     interactableObjects.First().StartQuest();
                 }
-                else if (inventory.GetItemQuantity(interactableObjects.First().GetQuestItemType()) < interactableObjects.First().GetQuestItemQuantity())
+                else if (!checkRequirements(interactableObjects.First()))
                 {
                     dialogueManager.StartDialogue(interactableObjects.First().GetQuestMiddleDialogue(), interactableObjects.First().name);
                 }
-                else if (inventory.GetItemQuantity(interactableObjects.First().GetQuestItemType()) >= interactableObjects.First().GetQuestItemQuantity())
+                else if (checkRequirements(interactableObjects.First()))
                 {
-                    inventory.RemoveItem(interactableObjects.First().GetQuestItemType(), interactableObjects.First().GetQuestItemQuantity());
+                    HandInQuest(interactableObjects.First());
 
                     dialogueManager.StartDialogue(interactableObjects.First().GetQuestEndDialogue(), interactableObjects.First().name);
 
@@ -96,6 +96,7 @@ public class InteractionManager : MonoBehaviour
         }
 
         DisplayMessages();
+        DisplayMessages();
     }
 
     //Trigger method that adds interactable objects in range to the list of interactable objects
@@ -103,8 +104,6 @@ public class InteractionManager : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            Debug.Log("Interactable Detected");
-
             interactableObjects.Add(other.gameObject.GetComponent<InteractableObject>());
             other.GetComponent<InteractableObject>().ShowPrompt(interactButton.ToString());
         }
@@ -115,8 +114,6 @@ public class InteractionManager : MonoBehaviour
     {
         if (other.CompareTag("Interactable"))
         {
-            Debug.Log("Interactables No Longer Detected");
-
             interactableObjects.Remove(other.gameObject.GetComponent<InteractableObject>());
             other.GetComponent<InteractableObject>().HidePrompt();
         }
@@ -192,6 +189,31 @@ public class InteractionManager : MonoBehaviour
         }
 
         messages.Remove(message);
+    }
+
+    private bool checkRequirements(InteractableObject quest)
+    {
+        List<QuestRequirement> questRequirements = quest.GetQuestRequirements();
+
+        foreach (QuestRequirement questRequirement in questRequirements)
+        {
+            if (inventory.GetItemQuantity(questRequirement.questItemType) < questRequirement.questQuantity)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void HandInQuest(InteractableObject quest)
+    {
+        List<QuestRequirement> questRequirements = quest.GetQuestRequirements();
+
+        foreach (QuestRequirement questRequirement in questRequirements)
+        {
+            inventory.RemoveItem(questRequirement.questItemType, questRequirement.questQuantity);
+        }
     }
 
     

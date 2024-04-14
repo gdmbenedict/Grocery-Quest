@@ -2953,15 +2953,15 @@ MonoBehaviour:
   appleVisual: {fileID: 713530010}
   bananasVisual: {fileID: 2075636259}
   porkVisual: {fileID: 2118848214}
-  oliveOilVisual: {fileID: 1141300178}
-  rockSaltVisual: {fileID: 2061215495}
+  oliveOilVisual: {fileID: 2061215495}
+  rockSaltVisual: {fileID: 1141300178}
   hotSauceVisual: {fileID: 1405704981}
-  healthPotVisual: {fileID: 161835786}
-  manaPotVisual: {fileID: 162142495}
+  healthPotVisual: {fileID: 162142495}
+  manaPotVisual: {fileID: 161835786}
   teaVisual: {fileID: 587047781}
-  knifeVisual: {fileID: 1612890668}
-  alcoholVisual: {fileID: 1692622417}
-  bookVisual: {fileID: 1111055551}
+  knifeVisual: {fileID: 941589355}
+  alcoholVisual: {fileID: 1612890668}
+  bookVisual: {fileID: 1692622417}
   candleVisual: {fileID: 941589355}
   apples: {fileID: 665304526}
   bananas: {fileID: 888404609}

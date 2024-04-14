@@ -33,8 +33,7 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private string[] dialogue;
 
     [Header("Quest")]
-    [SerializeField] private Item.itemType questItemType;
-    [SerializeField] private int questQuantity;
+    [SerializeField] private List<QuestRequirement> questRequirements;
     [SerializeField] private bool questStarted;
     [SerializeField] private string[] startDialogue;
     [SerializeField] private string[] middleDialogue;
@@ -143,14 +142,24 @@ public class InteractableObject : MonoBehaviour
         return pickupQuantity;
     }
 
-    public Item.itemType GetQuestItemType()
+    public int GetQuestRequirementNum()
     {
-        return questItemType;
+        return questRequirements.Count;
     }
 
-    public int GetQuestItemQuantity()
+    public List<QuestRequirement> GetQuestRequirements()
     {
-        return questQuantity;
+        return questRequirements;
+    }
+
+    public Item.itemType GetQuestItemType(int index)
+    {
+        return questRequirements[index].questItemType;
+    }
+
+    public int GetQuestItemQuantity(int index)
+    {
+        return questRequirements[index].questQuantity;
     }
 
     public Item.itemType GetRewardItemType()

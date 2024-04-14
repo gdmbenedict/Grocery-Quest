@@ -51,7 +51,6 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogue.Length > 0)
         {
-            //Debug.Log("dialogue called");
 
             inDialogue = true;
             gameManager.DisablePlayerControls();
@@ -82,7 +81,6 @@ public class DialogueManager : MonoBehaviour
 
     public void NextDialogue()
     {
-        Debug.Log("Next Dialogue Called");
 
         if (dialogue.Count <= 0)
         {
