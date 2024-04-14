@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
@@ -88,4 +89,13 @@ public class Inventory : MonoBehaviour
         return 0;
     }
 
+    public void clearInventory()
+    {
+        for (int i =0; i<items.Count; i++)
+        {
+            items[i].quantity = 0;
+            uiManager.UpdateItemUI(items[i]);
+        }
+
+    }
 }

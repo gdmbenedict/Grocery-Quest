@@ -3935,6 +3935,7 @@ MonoBehaviour:
   dialogueManager: {fileID: 0}
   gameState: 0
   player: {fileID: 1911119113}
+  animator: {fileID: 1911119115}
 --- !u!1 &886543548
 GameObject:
   m_ObjectHideFlags: 0

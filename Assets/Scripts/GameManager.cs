@@ -30,6 +30,9 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     private SpriteRenderer playerSpriteRenderer;
     private PlayerController playerController;
+    private Inventory inventory;
+    [SerializeField] private Animator animator;
+    private string startingTargetSpawnPoint;
 
     //sets default state for the game manager
     public void Awake()
@@ -46,6 +49,10 @@ public class GameManager : MonoBehaviour
         //grabing player details
         playerSpriteRenderer = player.GetComponent<SpriteRenderer>();
         playerController = player.GetComponent<PlayerController>();
+
+        //get default values
+        inventory = FindObjectOfType<Inventory>();
+        startingTargetSpawnPoint = playerController.getTargetSpawnPoint();
 
         gameState = GameState.MainMenu;
         ChangeGameState(GameState.MainMenu);
@@ -99,6 +106,11 @@ public class GameManager : MonoBehaviour
 
             //reset player position
             player.transform.position = Vector3.zero;
+
+            //reset character
+            inventory.clearInventory();
+            animator.Rebind();
+            playerController.changeTargetSpawnPoint(startingTargetSpawnPoint);
         }
     }
 
