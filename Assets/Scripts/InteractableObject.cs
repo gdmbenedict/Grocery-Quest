@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractableObject : MonoBehaviour
 {
@@ -12,6 +13,10 @@ public class InteractableObject : MonoBehaviour
         dialogue,
         quest
     }
+
+    [Header("Interactable Persistence")]
+    public bool active;
+    public string originalScene;
 
     [Header("Interaction Data")]
     public InteractionType interactionType;
@@ -58,18 +63,45 @@ public class InteractableObject : MonoBehaviour
         {
             prompt.enabled = false;
         }
+
+        active = gameObject.activeSelf;
+        originalScene = SceneManager.GetActiveScene().name;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        active = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    //event system
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (originalScene != SceneManager.GetActiveScene().name)
+        {
+            active = gameObject.activeSelf;
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            gameObject.SetActive(active);
+        }
     }
 
     //sets and activates prompt on interactable
@@ -118,8 +150,8 @@ public class InteractableObject : MonoBehaviour
             yield return null;
         }
 
-        
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 
     public InteractionType GetInteractionType()

@@ -218,6 +218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fde7eb61074e94b8de5fd827b453d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  active: 0
+  originalScene: 
   interactionType: 0
   name: 
   message: 
@@ -229,8 +231,7 @@ MonoBehaviour:
   pickupItemType: 0
   pickupQuantity: 0
   dialogue: []
-  questItemType: 0
-  questQuantity: 0
+  questRequirements: []
   questStarted: 0
   startDialogue: []
   middleDialogue: []
