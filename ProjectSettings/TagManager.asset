@@ -51,7 +51,10 @@ TagManager:
   - name: Interactables
     uniqueID: 3079783411
     locked: 0
-  - name: Player & NPCS
+  - name: NPCs
+    uniqueID: 2322623885
+    locked: 0
+  - name: Player
     uniqueID: 4087897961
     locked: 0
   - name: Foreground
