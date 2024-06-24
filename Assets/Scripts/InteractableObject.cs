@@ -14,10 +14,6 @@ public class InteractableObject : MonoBehaviour
         quest
     }
 
-    [Header("Interactable Persistence")]
-    public bool active;
-    public string originalScene;
-
     [Header("Interaction Data")]
     public InteractionType interactionType;
     public string name = null;
@@ -64,10 +60,6 @@ public class InteractableObject : MonoBehaviour
             prompt.enabled = false;
         }
 
-        active = gameObject.activeSelf;
-        originalScene = SceneManager.GetActiveScene().name;
-
-        //transform.parent = GameObject.Find("InteractablesHolder").transform;
     }
 
     // Start is called before the first frame update
