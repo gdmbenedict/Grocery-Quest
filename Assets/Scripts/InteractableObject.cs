@@ -14,6 +14,11 @@ public class InteractableObject : MonoBehaviour
         quest
     }
 
+    [Header("Interactable Persistence")]
+    private bool active = false;
+    private string originalScene;
+    private string id;
+
     [Header("Interaction Data")]
     public InteractionType interactionType;
     public string name = null;
@@ -60,12 +65,25 @@ public class InteractableObject : MonoBehaviour
             prompt.enabled = false;
         }
 
+        //setting original scene
+        active = true;
+        string scene = SceneManager.GetActiveScene().name;
+        originalScene = scene;
+
+        //generatingID
+        id = name + scene + gameObject.name + gameObject.transform.position.x + gameObject.transform.position.y + gameObject.transform.position.z;
+
+        //adding to manager
+        if (!FindObjectOfType<InteractablesManager>().AddToManager(this))
+        {
+            Destroy(gameObject);
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        active = true;
+        
     }
 
     // Update is called once per frame
@@ -133,13 +151,14 @@ public class InteractableObject : MonoBehaviour
     IEnumerator DelayedDestroy()
     {
         bool firstTime = true;
-        //Debug.Log("Desstroy reached");
+        //Debug.Log("Destroy reached");
         if (firstTime)
         {
             firstTime = false;
             yield return null;
         }
 
+        active = false;
         gameObject.SetActive(false);
         //Destroy(gameObject);
     }
@@ -230,6 +249,21 @@ public class InteractableObject : MonoBehaviour
     public bool GetQuestStarted()
     {
         return questStarted;
+    }
+
+    public string GetID()
+    {
+        return id;
+    }
+
+    public bool GetActive()
+    {
+        return active;
+    }
+
+    public string GetOriginalScene()
+    {
+        return originalScene;
     }
 
 }

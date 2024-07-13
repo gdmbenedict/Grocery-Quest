@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +48,9 @@ public class LevelManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
+        //save state of interactables in scene
+        InteractablesManager interactablesManager = FindObjectOfType<InteractablesManager>();
+
         SceneManager.LoadScene(sceneName);
     }
 

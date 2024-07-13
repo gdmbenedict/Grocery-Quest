@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     public UIManager uiManager;
     public InteractionManager interactionManager;
     public DialogueManager dialogueManager;
+    public InteractablesManager interactablesManager;
 
     [Header("Game States")]
 
@@ -33,8 +34,6 @@ public class GameManager : MonoBehaviour
     private Inventory inventory;
     [SerializeField] private Animator animator;
     private string startingTargetSpawnPoint;
-
-    private GameObject InteractablesHolder;
 
     //sets default state for the game manager
     public void Awake()
@@ -55,9 +54,6 @@ public class GameManager : MonoBehaviour
         //get default values
         inventory = FindObjectOfType<Inventory>();
         startingTargetSpawnPoint = playerController.getTargetSpawnPoint();
-
-        //get interactions holder
-        InteractablesHolder = GameObject.Find("InteractablesHolder");
 
         gameState = GameState.MainMenu;
         ChangeGameState(GameState.MainMenu);
@@ -93,6 +89,8 @@ public class GameManager : MonoBehaviour
     {
         SetUI();
 
+        interactablesManager.LoadInteractables();
+
         if (levelManager.IsInGameplayScene())
         {
             //turning on player
@@ -102,18 +100,6 @@ public class GameManager : MonoBehaviour
 
             SpawnPlayer(player.GetComponent<PlayerController>().getTargetSpawnPoint());
 
-            foreach (Transform interactable in InteractablesHolder.transform)
-            {
-                if (interactable.GetComponent<InteractableObject>().originalScene != SceneManager.GetActiveScene().name)
-                {
-                    interactable.GetComponent<InteractableObject>().RecordState();
-                    interactable.gameObject.SetActive(false);
-                }
-                else
-                {
-                    interactable.GetComponent<InteractableObject>().LoadState();
-                }
-            }
         }
         else
         {

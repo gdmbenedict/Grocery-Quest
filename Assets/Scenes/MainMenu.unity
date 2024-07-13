@@ -3272,7 +3272,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797640515
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &713530010
@@ -3668,7 +3668,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797640515
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &776054997
@@ -3934,6 +3934,7 @@ MonoBehaviour:
   uiManager: {fileID: 651235937}
   interactionManager: {fileID: 1042220211}
   dialogueManager: {fileID: 0}
+  interactablesManager: {fileID: 2124077202}
   gameState: 0
   player: {fileID: 1911119113}
   animator: {fileID: 1911119115}
@@ -6468,7 +6469,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797640515
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1303938250
@@ -7703,7 +7704,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797640515
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1535903583
@@ -9049,7 +9050,7 @@ MeshRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1797640515
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1714385798
@@ -10257,7 +10258,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -207069335
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 1629458177, guid: b83042ae8f28fee4e90e397ab33d7f11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11141,8 +11142,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2124077201}
+  - component: {fileID: 2124077202}
   m_Layer: 0
-  m_Name: InteractablesHolder
+  m_Name: InteractablesManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11163,6 +11165,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 877991088}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2124077202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2124077200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c002ed75b10cd0d45b93d66d6cd3c641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2127127621
 GameObject:
   m_ObjectHideFlags: 0

@@ -1570,7 +1570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849859756224830043, guid: c19ce15221bd7c44b9f23320e9139e7d, type: 3}
       propertyPath: m_Name
-      value: lost gold 3
+      value: lost gold 3 (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1840,7 +1840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849859756224830043, guid: c19ce15221bd7c44b9f23320e9139e7d, type: 3}
       propertyPath: m_Name
-      value: lost gold 3
+      value: lost gold 3 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1927,7 +1927,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1511335321
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
@@ -86921,7 +86921,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5849859756224830043, guid: c19ce15221bd7c44b9f23320e9139e7d, type: 3}
       propertyPath: m_Name
-      value: lost gold 3
+      value: lost gold 3 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -88135,6 +88135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AlchemistDialogue
       objectReference: {fileID: 0}
+    - target: {fileID: 411719867651132269, guid: d04bef4d774046843b1030d3a33ff03d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3861451626651239347, guid: d04bef4d774046843b1030d3a33ff03d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -88269,10 +88273,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5182663053714912170, guid: d04bef4d774046843b1030d3a33ff03d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1671958969}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6808816398083672488, guid: d04bef4d774046843b1030d3a33ff03d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d04bef4d774046843b1030d3a33ff03d, type: 3}
 --- !u!4 &1083322700 stripped
 Transform:
