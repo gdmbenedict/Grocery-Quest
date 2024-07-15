@@ -60,6 +60,7 @@ public class InteractablesManager : MonoBehaviour
             {
                 interactables[i].RecordState();
                 interactables[i].gameObject.SetActive(false);
+                Debug.Log(interactables[i].name + " hidden");
             }
         }
     }
@@ -81,6 +82,42 @@ public class InteractablesManager : MonoBehaviour
             if (interactables[i].GetOriginalScene() == sceneName)
             {
                 interactables[i].gameObject.SetActive(interactables[i].GetActive());
+            }
+        }
+    }
+
+    public void FindAttachements()
+    {
+        foreach (InteractableObject interactable in interactables)
+        {
+            List<GameObject> enables = interactable.GetEnable();
+            if (enables.Count > 0)
+            {
+                foreach (GameObject attachedObject in enables)
+                {
+                    if (attachedObject.GetComponent<InteractableObject>() == null)
+                    {
+                        if (!gameObject.transform.Find(attachedObject.name))
+                        {
+                            attachedObject.transform.parent = gameObject.transform;
+                        }
+                    }
+                }
+            }
+
+            List<GameObject> disables = interactable.GetDisable();
+            if (enables.Count > 0)
+            {
+                foreach (GameObject attachedObject in disables)
+                {
+                    if (attachedObject.GetComponent<InteractableObject>() == null)
+                    {
+                        if (!gameObject.transform.Find(attachedObject.name))
+                        {
+                            attachedObject.transform.parent = gameObject.transform;
+                        }
+                    }
+                }
             }
         }
     }

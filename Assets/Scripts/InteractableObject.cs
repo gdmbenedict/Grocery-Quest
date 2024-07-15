@@ -15,7 +15,7 @@ public class InteractableObject : MonoBehaviour
     }
 
     [Header("Interactable Persistence")]
-    private bool active = false;
+    [SerializeField] private bool active = false;
     private string originalScene;
     private string id;
 
@@ -66,9 +66,10 @@ public class InteractableObject : MonoBehaviour
         }
 
         //setting original scene
-        active = true;
         string scene = SceneManager.GetActiveScene().name;
         originalScene = scene;
+
+        gameObject.SetActive(active);
 
         //generatingID
         id = name + scene + gameObject.name + gameObject.transform.position.x + gameObject.transform.position.y + gameObject.transform.position.z;
@@ -238,11 +239,19 @@ public class InteractableObject : MonoBehaviour
         foreach (GameObject gameObject in enableAfterQuest)
         {
             gameObject.SetActive(true);
+            if (gameObject.GetComponent<InteractableObject>() != null)
+            {
+                gameObject.GetComponent<InteractableObject>().SetActive(true);
+            }
         }
 
         foreach (GameObject gameObject in disableAfterQuest)
         {
             gameObject.SetActive(false);
+            if (gameObject.GetComponent<InteractableObject>() != null)
+            {
+                gameObject.GetComponent<InteractableObject>().SetActive(false);
+            }
         }
     }
 
@@ -256,6 +265,11 @@ public class InteractableObject : MonoBehaviour
         return id;
     }
 
+    public void SetActive(bool active)
+    {
+        this.active = active;
+    }
+
     public bool GetActive()
     {
         return active;
@@ -265,5 +279,14 @@ public class InteractableObject : MonoBehaviour
     {
         return originalScene;
     }
+    
+    public List<GameObject> GetEnable()
+    {
+        return enableAfterQuest;
+    }
 
+    public List<GameObject> GetDisable()
+    {
+        return disableAfterQuest;
+    }
 }

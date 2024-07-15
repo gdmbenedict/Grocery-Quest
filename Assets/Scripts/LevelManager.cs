@@ -50,6 +50,7 @@ public class LevelManager : MonoBehaviour
     {
         //save state of interactables in scene
         InteractablesManager interactablesManager = FindObjectOfType<InteractablesManager>();
+        interactablesManager.SaveInteractables();
 
         SceneManager.LoadScene(sceneName);
     }
